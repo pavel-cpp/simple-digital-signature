@@ -16,10 +16,10 @@ add_executable(
         ${PROJECT_NAME}
         main.cpp
         file-hasher/file_hasher.cpp
-        file-hasher/file_hasher.h
         file-reader/file_reader.cpp
-        file-reader/file_reader.h
         cryptographic-hash/cryptographic_hash.cpp
-        cryptographic-hash/cryptographic_hash.h
         cryptographic-provider/cryptographic_provider.cpp
+        file-hash-calculator/file_hash_calculator.cpp
+        file-hash-calculator/file_hash_calculator.h
+        file-hash-calculator/file_hash_calculator.cpp
 )
