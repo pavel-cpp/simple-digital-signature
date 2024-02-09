@@ -1,13 +1,14 @@
 #pragma once
 
-#include <file_reader.h>
+#include <cryptographic/cryptographic.h>
+#include <cstdint>
+#include <io-tools/io_tools.h>
 
 class FileHashCalculator {
 public:
-    FileHashCalculator(const std::filesystem::path& path);
-    uint64_t Calculate();
+    FileHashCalculator();
+    uint64_t Calculate(const std::filesystem::path& path);
 private:
-    FileReader file_reader_;
-    CryptographicProvider provider_;
-    CryptographicHash hash_;
+    Cryptographic::Provider provider_;
+    Cryptographic::Hash hash_;
 };

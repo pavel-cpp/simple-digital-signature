@@ -1,19 +1,19 @@
-#include "cryptographic_hash.h"
+#include "hash.h"
 
 #include <stdexcept>
 
-CryptographicHash::CryptographicHash(HCRYPTPROV provider) : hash_(0) {
+Cryptographic::Hash::Hash(HCRYPTPROV provider) : hash_(0) {
     if (!CryptCreateHash(provider, CALG_SHA_256, 0, 0, &hash_)) {
         CryptReleaseContext(provider, 0);
         throw std::runtime_error("Failed to create hash object");
     }
 }
 
-CryptographicHash::~CryptographicHash() {
+Cryptographic::Hash::~Hash() {
     CryptDestroyHash(hash_);
 }
 
-std::vector<BYTE> CryptographicHash::Hash(const std::vector<char> &data) const {
+std::vector<BYTE> Cryptographic::Hash::operator()(const std::vector<char> &data) const {
     if (!CryptHashData(hash_, reinterpret_cast<const BYTE*>(data.data()), data.size(), 0)) {
         CryptDestroyHash(hash_);
         throw std::runtime_error("Failed to hash data");
