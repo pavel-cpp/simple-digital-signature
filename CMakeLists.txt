@@ -15,11 +15,12 @@ endforeach()
 add_executable(
         ${PROJECT_NAME}
         main.cpp
-        file-hasher/file_hasher.cpp
-        file-reader/file_reader.cpp
+        io-tools/io_tools.cpp
         cryptographic-hash/cryptographic_hash.cpp
         cryptographic-provider/cryptographic_provider.cpp
         file-hash-calculator/file_hash_calculator.cpp
         file-hash-calculator/file_hash_calculator.h
         file-hash-calculator/file_hash_calculator.cpp
+        io-tools/io_tools.cpp
+        io-tools/io_tools.h
 )
