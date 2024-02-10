@@ -13,7 +13,7 @@ add_executable(
         cryptographic/provider/provider.cpp
         hash-calculator/hash_calculator.cpp
         io-tools/io_tools.cpp
-        key-sing-manager/key_sign_manager.cpp
+        key-sign-manager/key_sign_manager.cpp
         keygen/keygen.cpp
         doc-signer/doc_signer.cpp
         doc-signer/doc_signer.cpp
