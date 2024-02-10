@@ -1,7 +1,7 @@
 #pragma once
 
-#include <wincrypt.h>
 #include <windows.h>
+#include <wincrypt.h>
 
 namespace Cryptographic {
     class Provider {

@@ -1,8 +1,8 @@
 #pragma once
 
 #include <vector>
-#include <wincrypt.h>
 #include <windows.h>
+#include <wincrypt.h>
 
 namespace Cryptographic {
     class Hash {
