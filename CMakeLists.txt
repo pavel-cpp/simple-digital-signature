@@ -16,4 +16,10 @@ add_executable(
         io-tools/io_tools.cpp
         testing/testing.h
         key-sing-manager/key_sign_manager.cpp
+        keygen/keygen.cpp
+        keygen/keygen.h
+        doc-signer/doc_signer.cpp
+        doc-signer/doc_signer.h
+        doc-signer/doc_signer.cpp
+        doc-signer/doc_signer.h
 )

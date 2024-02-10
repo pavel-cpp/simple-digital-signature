@@ -1,14 +1,13 @@
-//
-// Created by green on 10-Feb-24.
-//
+#pragma once
 
-#ifndef DIGITAL_SIGNATURE_KEYGEN_H
-#define DIGITAL_SIGNATURE_KEYGEN_H
+#include <cstdint>
+#include <string>
+#include <vector>
 
+namespace KeyGen{
 
-class keygen {
+    uint32_t GeneratePrivateKey(std::string text);
 
-};
+    std::pair<std::vector<int64_t>, std::vector<int64_t>> GenerateSign(uint32_t private_key, uint64_t hash);
 
-
-#endif //DIGITAL_SIGNATURE_KEYGEN_H
+}

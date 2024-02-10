@@ -4,40 +4,37 @@
 #include <hash-calculator/hash_calculator.h>
 #include <io-tools/io_tools.h>
 #include <key-sing-manager/key_sign_manager.h>
+#include <doc-signer/doc_signer.h>
+#include <filesystem>
+#include <fstream>
 
 using namespace std;
 
+bool IsReadable(const filesystem::path& path) {
+    std::ifstream file(path);
+    return file.is_open();
+}
+
 int main(int argc, char* argv[]) {
-    KeySignManager repo("repo2");
-    HashCalculator hasher;
-    string s;
-    cin >> s;
-    uint32_t private_key = static_cast<uint32_t>(hasher.Calculate(vector<char>(s.begin(), s.end())) >> 32);
-    srand(private_key);
-    uint64_t hash = hasher.Calculate(ReadContents("test_file"));
-    cout << hash << endl;
-    vector<int64_t> sign;
-    {
-        string hash_s = to_string(hash);
-        sign.assign(hash_s.begin(), hash_s.end());
+    if(argc > 2){
+        cerr << "Too much arguments" << endl;
+        return 1;
     }
-    vector<int64_t> open;
-    cout << "signature: ";
-    for(int64_t& c: sign){
-        int64_t num = (static_cast<int64_t>(rand()) + static_cast<int64_t>(rand())) - (static_cast<int64_t>(rand()) + static_cast<int64_t>(rand()));
-        c += num;
-        open.push_back(-num);
-        cout << c << " ";
+
+    filesystem::path document_path;
+
+    if(argc == 2){
+        document_path = argv[1];
+    }else{
+        cout << "Enter the path to document"s << endl << "> "s;
+        string tmp;
+        getline(cin, tmp);
+        document_path = tmp;
     }
-    cout << endl << endl;
-    repo.AddData(open, sign);
-    cout << "open key: " << open << endl << endl;
-    open = repo.GetKey(sign);
-    cout << "open key: " << open << endl << endl;
-    try{
-        repo.RemoveData(open);
-    }catch (exception& e){
-        cout << e.what() << endl;
+
+    if(!filesystem::is_regular_file(argv[1]) || !IsReadable(argv[1])){
+        cerr << "Invalid path or document is not readable" << endl;
+        return 1;
     }
 
     return 0;

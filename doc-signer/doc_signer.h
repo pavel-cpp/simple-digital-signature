@@ -1,14 +1,16 @@
-//
-// Created by green on 10-Feb-24.
-//
+#pragma once
 
-#ifndef DIGITAL_SIGNATURE_DOC_SIGNER_H
-#define DIGITAL_SIGNATURE_DOC_SIGNER_H
+#include <filesystem>
+#include <vector>
+#include <cstdint>
 
+class DocSigner {
 
-class doc_signer {
+    static void Sign(const std::filesystem::path& path, const std::vector<int64_t>& sign);
+
+    bool ValidSign(const std::filesystem::path &doc_path, const std::filesystem::path &sign_path);
+
+    static bool HasSign(const std::filesystem::path& path);
 
 };
 
-
-#endif //DIGITAL_SIGNATURE_DOC_SIGNER_H
