@@ -16,5 +16,4 @@ add_executable(
         io-tools/io_tools.cpp
         testing/testing.h
         key-sing-manager/key_sign_manager.cpp
-        key-sing-manager/key_sign_manager.h
 )

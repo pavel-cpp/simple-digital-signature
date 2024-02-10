@@ -3,25 +3,12 @@
 #include <vector>
 #include <hash-calculator/hash_calculator.h>
 #include <io-tools/io_tools.h>
-#include <bitset>
+#include <key-sing-manager/key_sign_manager.h>
 
 using namespace std;
 
-template<typename T>
-ostream& operator<<(ostream& os, vector<T> data){
-    bool first = true;
-    for(const T& item: data){
-        if(first){
-            os << item;
-            first = false;
-            continue;
-        }
-        os << " " << item;
-    }
-    return os;
-}
-
 int main(int argc, char* argv[]) {
+    KeySignManager repo("repo2");
     HashCalculator hasher;
     string s;
     cin >> s;
@@ -29,16 +16,29 @@ int main(int argc, char* argv[]) {
     srand(private_key);
     uint64_t hash = hasher.Calculate(ReadContents("test_file"));
     cout << hash << endl;
-    string hash_s = to_string(hash);
-    vector<int> open;
+    vector<int64_t> sign;
+    {
+        string hash_s = to_string(hash);
+        sign.assign(hash_s.begin(), hash_s.end());
+    }
+    vector<int64_t> open;
     cout << "signature: ";
-    for(char& c: hash_s){
-        int num = rand() % 255 - 127;
+    for(int64_t& c: sign){
+        int64_t num = (static_cast<int64_t>(rand()) + static_cast<int64_t>(rand())) - (static_cast<int64_t>(rand()) + static_cast<int64_t>(rand()));
         c += num;
         open.push_back(-num);
-        cout << static_cast<int>(c) << " ";
+        cout << c << " ";
     }
     cout << endl << endl;
+    repo.AddData(open, sign);
     cout << "open key: " << open << endl << endl;
+    open = repo.GetKey(sign);
+    cout << "open key: " << open << endl << endl;
+    try{
+        repo.RemoveData(open);
+    }catch (exception& e){
+        cout << e.what() << endl;
+    }
+
     return 0;
 }

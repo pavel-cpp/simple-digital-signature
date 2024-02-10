@@ -1,22 +1,21 @@
 #pragma once
 
 #include <filesystem>
-#include <fstream>
 #include <vector>
 
 class KeySignManager {
 public:
 
-    KeySignManager(const std::filesystem::path &path);
+    explicit KeySignManager(const std::filesystem::path &path);
 
-    void AddData(const std::vector<int64_t> &key, const std::vector<int64_t> &sing);
+    void AddData(const std::vector<int64_t> &key, const std::vector<int64_t> &sign);
 
-    void GetKey(const std::vector<int64_t> &sing);
+    std::vector<int64_t> GetKey(const std::vector<int64_t> &sing) const;
 
     void RemoveData(const std::vector<int64_t> &key);
 
 private:
 
-    std::fstream repository_file_;
+    std::filesystem::path path_;
 
 };
