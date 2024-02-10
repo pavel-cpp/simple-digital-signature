@@ -11,7 +11,7 @@ namespace Cryptographic{
 
         ~Hash();
 
-        [[nodiscard]] std::vector<BYTE> operator()(const std::vector<char> &data) const;
+        [[nodiscard]] std::vector<BYTE> operator()(const std::vector<char> &data);
 
     private:
         HCRYPTHASH hash_;

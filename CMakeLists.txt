@@ -12,10 +12,9 @@ add_executable(
         io-tools/io_tools.cpp
         cryptographic/hash/hash.cpp
         cryptographic/provider/provider.cpp
-        file-hash-calculator/file_hash_calculator.cpp
-        file-hash-calculator/file_hash_calculator.h
-        file-hash-calculator/file_hash_calculator.cpp
+        hash-calculator/hash_calculator.cpp
         io-tools/io_tools.cpp
-        io-tools/io_tools.h
-        cryptographic/cryptographic.h
+        testing/testing.h
+        key-sing-manager/key_sign_manager.cpp
+        key-sing-manager/key_sign_manager.h
 )

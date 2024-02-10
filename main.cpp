@@ -1,7 +1,9 @@
 // TEMP TEST DATA
 #include <iostream>
 #include <vector>
-#include <file_hasher.h>
+#include <hash-calculator/hash_calculator.h>
+#include <io-tools/io_tools.h>
+#include <bitset>
 
 using namespace std;
 
@@ -19,11 +21,13 @@ ostream& operator<<(ostream& os, vector<T> data){
     return os;
 }
 
-int main() {
-    FileHasher hasher;
-    int private_key = 12;
+int main(int argc, char* argv[]) {
+    HashCalculator hasher;
+    string s;
+    cin >> s;
+    uint32_t private_key = static_cast<uint32_t>(hasher.Calculate(vector<char>(s.begin(), s.end())) >> 32);
     srand(private_key);
-    uint64_t hash = FileHasher::Hash("test_file");
+    uint64_t hash = hasher.Calculate(ReadContents("test_file"));
     cout << hash << endl;
     string hash_s = to_string(hash);
     vector<int> open;

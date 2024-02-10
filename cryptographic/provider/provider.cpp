@@ -1,10 +1,10 @@
 #include "provider.h"
 
-#include <stdexcept>
+#include <testing/testing.h>
 
 Cryptographic::Provider::Provider() {
     if (!CryptAcquireContext(&provider_, nullptr, nullptr, PROV_RSA_AES, CRYPT_VERIFYCONTEXT)) {
-        throw std::runtime_error("Failed to acquire cryptographic context");
+        ASSERT_HINT(false, "Failed to acquire cryptographic context");
     }
 }
 
