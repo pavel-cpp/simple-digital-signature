@@ -1,4 +1,5 @@
 #include "keygen.h"
+
 #include <hash-calculator/hash_calculator.h>
 
 using std::vector;
@@ -12,13 +13,14 @@ std::pair<std::vector<int64_t>, std::vector<int64_t>> KeyGen::GenerateSign(uint3
     vector<int64_t> key, sign;
     {
         std::string hash_s = std::to_string(hash);
-        for(char c: hash_s){
+        for (char c: hash_s) {
             sign.push_back(c - '0');
         }
     }
     srand(private_key);
-    for(int64_t& el: sign){
-        int64_t key_el = (static_cast<int64_t>(rand()) + static_cast<int64_t>(rand())) - (static_cast<int64_t>(rand()) + static_cast<int64_t>(rand()));
+    for (int64_t &el: sign) {
+        int64_t key_el = (static_cast<int64_t>(rand()) + static_cast<int64_t>(rand())) -
+                         (static_cast<int64_t>(rand()) + static_cast<int64_t>(rand()));
         el += key_el;
         key.push_back(-key_el);
     }

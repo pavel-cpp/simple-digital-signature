@@ -1,9 +1,9 @@
 #include "hash_calculator.h"
 
 HashCalculator::HashCalculator() :
-        provider_(){}
+        provider_() {}
 
-uint64_t HashCalculator::Calculate(const std::vector<char>& data) {
+uint64_t HashCalculator::Calculate(const std::vector<char> &data) {
     Cryptographic::Hash hash(provider_.GetProvider());
     std::vector<BYTE> hash_data = hash(data);
 

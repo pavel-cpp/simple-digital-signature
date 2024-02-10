@@ -1,10 +1,10 @@
 #pragma once
 
 #include <vector>
-#include <windows.h>
 #include <wincrypt.h>
+#include <windows.h>
 
-namespace Cryptographic{
+namespace Cryptographic {
     class Hash {
     public:
         explicit Hash(HCRYPTPROV provider);

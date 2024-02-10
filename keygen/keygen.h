@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace KeyGen{
+namespace KeyGen {
 
     uint32_t GeneratePrivateKey(std::string text);
 

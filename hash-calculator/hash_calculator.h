@@ -1,12 +1,15 @@
 #pragma once
 
-#include <cryptographic/cryptographic.h>
 #include <cstdint>
+
+#include <cryptographic/cryptographic.h>
 
 class HashCalculator {
 public:
     HashCalculator();
-    uint64_t Calculate(const std::vector<char>& data);
+
+    uint64_t Calculate(const std::vector<char> &data);
+
 private:
     Cryptographic::Provider provider_;
 };

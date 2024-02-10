@@ -1,9 +1,9 @@
 #pragma once
 
-#include <windows.h>
 #include <wincrypt.h>
+#include <windows.h>
 
-namespace Cryptographic{
+namespace Cryptographic {
     class Provider {
     public:
         Provider();

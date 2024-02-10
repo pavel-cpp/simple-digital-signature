@@ -1,9 +1,10 @@
 #include "doc_signer.h"
 
 #include <fstream>
-#include <key-sing-manager/key_sign_manager.h>
+
 #include <hash-calculator/hash_calculator.h>
 #include <io-tools/io_tools.h>
+#include <key-sing-manager/key_sign_manager.h>
 
 void DocSigner::Sign(const std::filesystem::path &path, const std::vector<int64_t> &sign) {
     using std::operator ""s;
