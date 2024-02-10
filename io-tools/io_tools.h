@@ -18,3 +18,7 @@ std::ostream& operator<<(std::ostream& os, std::vector<T> data){
 }
 
 std::vector<char> ReadContents(const std::filesystem::path& path);
+
+void WriteData(std::fstream &file, const std::vector<int64_t> &data);
+
+std::vector<int64_t> ReadData(std::fstream &file);

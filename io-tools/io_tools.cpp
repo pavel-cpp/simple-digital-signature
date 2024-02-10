@@ -3,7 +3,7 @@
 #include <fstream>
 #include <testing/testing.h>
 
-std::vector<char> ReadContents(const std::filesystem::path& path) {
+std::vector<char> ReadContents(const std::filesystem::path &path) {
     std::ifstream file_(path, std::ios::binary);
     file_.seekg(0, std::ios::end);
     std::streamsize file_size = file_.tellg();
@@ -18,4 +18,19 @@ std::vector<char> ReadContents(const std::filesystem::path& path) {
     }
 
     return file_content;
+}
+
+void WriteData(std::fstream &file, const std::vector<int64_t> &data) {
+    size_t size_of_data = data.size();
+    file.write(reinterpret_cast<const char *>(&size_of_data), sizeof(size_t));
+    file.write(reinterpret_cast<const char *>(data.data()), data.size() * sizeof(int64_t));
+}
+
+std::vector<int64_t> ReadData(std::fstream &file) {
+    std::vector<int64_t> data;
+    size_t size_of_data;
+    file.read(reinterpret_cast<char *>(&size_of_data), sizeof(size_t));
+    data.resize(size_of_data);
+    file.read(reinterpret_cast<char *>(data.data()), size_of_data * sizeof(int64_t));
+    return data;
 }

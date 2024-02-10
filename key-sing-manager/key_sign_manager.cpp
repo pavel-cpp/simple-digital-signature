@@ -1,4 +1,5 @@
 #include "key_sign_manager.h"
+#include <io-tools/io_tools.h>
 
 #include <fstream>
 
@@ -6,21 +7,6 @@ using std::fstream;
 
 KeySignManager::KeySignManager(const std::filesystem::path &path) : path_(path) {
     fstream tmp(path, std::ios::binary | std::ios::app);
-}
-
-void WriteData(fstream &file, const std::vector<int64_t> &data) {
-    size_t size_of_data = data.size();
-    file.write(reinterpret_cast<const char *>(&size_of_data), sizeof(size_t));
-    file.write(reinterpret_cast<const char *>(data.data()), data.size() * sizeof(int64_t));
-}
-
-std::vector<int64_t> ReadData(fstream &file) {
-    std::vector<int64_t> data;
-    size_t size_of_data;
-    file.read(reinterpret_cast<char *>(&size_of_data), sizeof(size_t));
-    data.resize(size_of_data);
-    file.read(reinterpret_cast<char *>(data.data()), size_of_data * sizeof(int64_t));
-    return data;
 }
 
 void KeySignManager::AddData(const std::vector<int64_t> &key, const std::vector<int64_t> &sign) {
